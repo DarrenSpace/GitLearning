@@ -10,13 +10,17 @@ import SwiftUI
 struct ContentView: View {
     
     @State var showSheet = false
+    @State var showNavigation = false
     
     var body: some View {
         NavigationStack {
             VStack {
-                NavigationLink(destination: DetailView()) {
-                    Text("Hello Detail View")
+                Button {
+                    showNavigation = true
+                } label: {
+                    Text("Git Learning App")
                 }
+
                 Button {
                     showSheet = true
                 } label: {
@@ -26,6 +30,9 @@ struct ContentView: View {
             }
             .padding()
             .sheet(isPresented: $showSheet) {
+                DetailView()
+            }
+            .navigationDestination(isPresented: $showNavigation) {
                 DetailView()
             }
         }
